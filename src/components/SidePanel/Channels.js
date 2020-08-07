@@ -17,6 +17,14 @@ class Channels extends Component {
     componentDidMount() {
         this.addListeners();
     }
+    /*
+    componentWillMount() {
+        this.removeListeners();
+    }
+    removeListeners = () => {
+        this.state.channelRef.off();
+    }
+    */
     addListeners = () => {
         let loadedChannels = [];
         this.state.channelRef.on("child_added", (snap) => {
@@ -30,22 +38,10 @@ class Channels extends Component {
         const firstChannel = this.state.channels[0];
         if (this.state.firstLoad && this.state.channels.length > 0) {
             this.props.setCurrentChannel(firstChannel);
+            this.setActiveChannel(firstChannel);
         }
         this.setState({ firstLoad: false });
     };
-    closeModal = () => this.setState({ modal: false });
-    openModal = () => this.setState({ modal: true });
-    handleChange = (e) => {
-        this.setState({ [e.target.name]: e.target.value });
-    };
-    handleSubmit = (e) => {
-        e.preventDefault();
-        if (this.formValidation(this.state)) {
-            this.addChannel();
-        }
-    };
-    formValidation = ({ channelName, channelDetails }) =>
-        channelName && channelDetails;
     addChannel = () => {
         const user = this.props.presentUser;
         const { channelRef, channelName, channelDetails } = this.state;
@@ -91,6 +87,19 @@ class Channels extends Component {
                 # {channel.name}
             </Menu.Item>
         ));
+    closeModal = () => this.setState({ modal: false });
+    openModal = () => this.setState({ modal: true });
+    handleChange = (e) => {
+        this.setState({ [e.target.name]: e.target.value });
+    };
+    handleSubmit = (e) => {
+        e.preventDefault();
+        if (this.formValidation(this.state)) {
+            this.addChannel();
+        }
+    };
+    formValidation = ({ channelName, channelDetails }) =>
+        channelName && channelDetails;
 
     render() {
         const { channels, modal } = this.state;

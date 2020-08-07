@@ -5,3 +5,30 @@ body,
     padding: 1em;
     background: #eee;
 }
+.messages {
+    height: calc(100vh - 241px);
+    overflow-y: scroll;
+}
+.ui.labeled.input:not([class*="corner labeled"]) .label:first-child + input {
+    border-top-right-radius: 0.28571429rem !important;
+    border-bottom-right-radius: 0.28571429rem !important;
+    border-right-color: #dededf !important;
+    padding: 0 1em;
+    margin-right: 0.25em;
+}
+.ui.labeled.input:not([class*="corner labeled"])
+    .label:first-child
+    + input:focus {
+    border-right-color: #85b7d9 !important;
+}
+#btn__upload {
+    min-width: 50px !important;
+}
+#btn__send {
+    min-width: 100px !important;
+    color: #fff!important;
+    background-color: #2d88ff !important;
+}
+.ui.comments {
+    max-width: unset !important;
+}

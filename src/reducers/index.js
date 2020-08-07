@@ -18,11 +18,6 @@ const user_reducer = (state = initialUserState, action) => {
                 ...state,
                 isLoading: false,
             };
-        // case actionTypes.SET_CURRENT_CHANNEL:
-        //     return {
-        //         ...initialUserState,
-        //         isLoading: false,
-        //     };
         default:
             return state;
     }
